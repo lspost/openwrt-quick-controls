@@ -1,9 +1,10 @@
 {
   "name": "openwrt-quick-controls",
   "version": "1.0.0",
-  "description": "WebApp for quickly modifying OpenWrt mac filters and other configuration",
+  "description": "Locally hosted WebApp for quickly modifying OpenWrt mac filters and other configuration",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Louis Spost",
