@@ -35,8 +35,13 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  done(null, { id: 'abc' });
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
+  if (user) {
+    done(null, user);
+  } else {
+    done('could not locate user');
+  }
 });
 
 module.exports = app => {
