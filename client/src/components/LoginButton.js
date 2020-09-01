@@ -13,7 +13,6 @@ const LoginButton = ({ auth, logOut }) => {
         </li>
       );
     default:
-      console.log(auth);
       return (
         <li>
           <button
@@ -21,7 +20,7 @@ const LoginButton = ({ auth, logOut }) => {
             className="btn"
             style={{ marginRight: '10px' }}
           >
-            Logout
+            Logout {auth.name}
           </button>
         </li>
       );

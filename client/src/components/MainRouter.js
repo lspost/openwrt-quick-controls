@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 const MainRouter = () => {
   return (
     <BrowserRouter>
-      <div>
+      <div className="grey lighten-2" style={{ minHeight: '100vh' }}>
         <Header />
         <div className="container">
           <Route exact path="/" component={Dashboard} />
