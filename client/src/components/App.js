@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authActions } from '../actions';
-import Header from './Header';
+import Loader from './Loader';
+import LandingPage from './LandingPage';
+import MainRouter from './MainRouter';
 
 class App extends React.Component {
   componentDidMount() {
@@ -9,12 +11,17 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Header />
-      </div>
-    );
+    switch (this.props.auth) {
+      case null:
+        return <Loader />;
+      case false:
+        return <LandingPage />;
+      default:
+        return <MainRouter />;
+    }
   }
 }
 
-export default connect(null, authActions)(App);
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps, authActions)(App);

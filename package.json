@@ -4,7 +4,10 @@
   "description": "Locally hosted WebApp for quickly modifying OpenWrt mac filters and other configuration",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Louis Spost",
