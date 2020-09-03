@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import 'materialize-css/dist/css/materialize.min.css';
 import axios from 'axios';
+import './styles/styles.css';
 
 import App from './components/App';
 import reducers from './reducers';

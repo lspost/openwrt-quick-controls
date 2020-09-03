@@ -15,11 +15,7 @@ const LoginButton = ({ auth, logOut }) => {
     default:
       return (
         <li>
-          <button
-            onClick={logOut}
-            className="btn"
-            style={{ marginRight: '10px' }}
-          >
+          <button onClick={logOut} className="btn login-button">
             Logout
           </button>
         </li>

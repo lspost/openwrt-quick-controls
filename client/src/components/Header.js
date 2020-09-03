@@ -7,7 +7,7 @@ class Header extends React.Component {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper cyan lighten-1">
-            <a href="#" className="brand-logo" style={{ marginLeft: '8px' }}>
+            <a href="#" className="brand-logo navbar-logo">
               OQC
             </a>
             <ul id="nav-mobile" className="right">

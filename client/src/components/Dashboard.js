@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 
   renderGroups() {
     return this.props.groups.map(group => (
-      <GroupCard id={group._id} name={group.name} />
+      <GroupCard id={group._id} name={group.name} devices={group.devices} />
     ));
   }
   render() {

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { groupActions } from '../actions';
 import AccessSwitch from './AccessSwitch';
+import Device from './Device';
 
 class GroupCard extends React.Component {
   state = {
@@ -9,6 +10,9 @@ class GroupCard extends React.Component {
   };
   toggleAccess = () => {
     this.setState(prevState => ({ accessAllowed: !prevState.accessAllowed }));
+  };
+  renderDevicesList = () => {
+    return this.props.devices.map(device => <Device {...device} />);
   };
   render() {
     return (
@@ -24,7 +28,9 @@ class GroupCard extends React.Component {
                     onAccessChange={this.toggleAccess}
                   />
                 </div>
-                <div className="col s12 m8 blue"></div>
+                <div className="col s12 m8">
+                  <div className="device-list">{this.renderDevicesList()}</div>
+                </div>
               </div>
             </div>
           </div>

@@ -71,10 +71,7 @@ class GroupEdit extends React.Component {
               />
             </div>
           </div>
-          <div
-            className="card-action"
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
+          <div className="card-action group-edit-action">
             <button
               className="btn"
               onClick={() =>

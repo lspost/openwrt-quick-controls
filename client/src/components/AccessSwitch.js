@@ -2,31 +2,11 @@ import React from 'react';
 
 export default ({ accessAllowed, onAccessChange }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'flex-start'
-      }}
-    >
+    <div className="access-switch">
       {!accessAllowed ? (
-        <p
-          className="badge red"
-          style={{ borderRadius: '4px', padding: '2px 10px' }}
-        >
-          Blocked
-        </p>
+        <span className="red access-badge">Blocked</span>
       ) : (
-        <p
-          className="badge green"
-          style={{
-            borderRadius: '4px',
-            padding: '2px 10px'
-          }}
-        >
-          Allowed
-        </p>
+        <span className="green access-badge">Allowed</span>
       )}
       <div className="switch">
         <label>

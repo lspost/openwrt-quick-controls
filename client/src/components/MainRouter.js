@@ -7,7 +7,7 @@ import GroupEdit from './GroupEdit';
 const MainRouter = () => {
   return (
     <BrowserRouter>
-      <div className="grey lighten-2" style={{ minHeight: '100vh' }}>
+      <div className="grey lighten-2 main-router">
         <Header />
         <div className="container">
           <Route exact path="/" component={Dashboard} />

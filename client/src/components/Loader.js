@@ -1,14 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh'
-    }}
-  >
+  <div className="loader">
     <div className="preloader-wrapper big active">
       <div className="spinner-layer spinner-blue-only">
         <div className="circle-clipper left">
