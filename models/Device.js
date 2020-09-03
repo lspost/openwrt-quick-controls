@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const deviceSchema = new Schema({
   name: String,
-  macAddress: String
+  address: String
 });
 
-mongoose.model(deviceSchema, 'devices');
+module.exports = deviceSchema;

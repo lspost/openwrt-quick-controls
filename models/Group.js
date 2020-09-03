@@ -7,4 +7,4 @@ const groupSchema = new Schema({
   devices: [deviceSchema]
 });
 
-mongoose.model(groupSchema, 'groups');
+mongoose.model('groups', groupSchema);

@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const requireLogin = require('../middlewares/requireLogin');
 const processGroupData = require('../middlewares/processGroupData');
 
 const Group = mongoose.model('groups');
 
 module.exports = app => {
-  app.get('api/groups', requireLogin, async (req, res) => {
+  app.get('/api/groups', requireLogin, async (req, res) => {
     const groups = await Group.find({});
     res.send(groups);
   });
@@ -21,4 +22,6 @@ module.exports = app => {
   app.put('/api/groups/:id', async (req, res) => {
     //
   });
+
+  app.delete('/api/groups:id', async (req, res) => {});
 };

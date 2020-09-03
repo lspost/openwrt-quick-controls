@@ -1,14 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { groupActions } from '../actions';
+import GroupCard from '../components/GroupCard';
 
-const Dashboard = () => {
-  return (
-    <div>
-      <Link to="/group/edit" className="btn">
-        Add Group
-      </Link>
-    </div>
-  );
-};
+class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.getGroups();
+  }
 
-export default Dashboard;
+  renderGroups() {
+    return this.props.groups.map(group => (
+      <GroupCard id={group._id} name={group.name} />
+    ));
+  }
+  render() {
+    return (
+      <div>
+        {this.renderGroups()}
+        <Link to="/group/edit" className="btn">
+          Add Group
+        </Link>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ groups }) => ({ groups });
+
+export default connect(mapStateToProps, groupActions)(Dashboard);

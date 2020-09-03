@@ -20,7 +20,7 @@ const LoginButton = ({ auth, logOut }) => {
             className="btn"
             style={{ marginRight: '10px' }}
           >
-            Logout {auth.name}
+            Logout
           </button>
         </li>
       );

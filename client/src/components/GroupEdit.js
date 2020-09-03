@@ -75,7 +75,26 @@ class GroupEdit extends React.Component {
             className="card-action"
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <button className="btn">Save</button>
+            <button
+              className="btn"
+              onClick={() =>
+                this.props.createGroup({
+                  name: this.state.groupName,
+                  devices: [
+                    {
+                      name: this.state.device1Name,
+                      address: this.state.device1Name
+                    },
+                    {
+                      name: this.state.device2Name,
+                      address: this.state.device2Address
+                    }
+                  ]
+                })
+              }
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
