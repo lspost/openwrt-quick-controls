@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authActions } from '../actions';
-import Loader from './Loader';
-import LandingPage from './LandingPage';
+import Loader from './general/Loader';
+import LandingPage from './pages/LandingPage';
 import MainRouter from './MainRouter';
 
 class App extends React.Component {

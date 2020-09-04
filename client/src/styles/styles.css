@@ -49,6 +49,19 @@
   justify-content: center;
 }
 
+.group-edit-input-container {
+  display: flex;
+}
+
+.group-edit-input-buttons-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.group-edit-input-button {
+  cursor: pointer;
+}
+
 .device-list {
   border: 1px solid grey;
   padding: 12px;

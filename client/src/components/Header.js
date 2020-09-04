@@ -1,5 +1,6 @@
 import React from 'react';
-import LoginButton from './LoginButton';
+import { connect } from 'react-redux';
+import { authActions } from '../actions';
 
 class Header extends React.Component {
   render() {
@@ -11,7 +12,14 @@ class Header extends React.Component {
               OQC
             </a>
             <ul id="nav-mobile" className="right">
-              <LoginButton />
+              <li>
+                <button
+                  onClick={this.props.logOut}
+                  className="btn login-button"
+                >
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
         </nav>
@@ -20,4 +28,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default connect(null, authActions)(Header);

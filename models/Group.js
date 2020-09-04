@@ -4,7 +4,11 @@ const deviceSchema = require('./Device');
 
 const groupSchema = new Schema({
   name: String,
-  devices: [deviceSchema]
+  devices: [deviceSchema],
+  accessAllowed: {
+    type: Boolean,
+    default: true
+  }
 });
 
 mongoose.model('groups', groupSchema);

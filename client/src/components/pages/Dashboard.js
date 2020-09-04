@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { groupActions } from '../actions';
-import GroupCard from '../components/GroupCard';
+import { groupActions } from '../../actions';
+import GroupCard from '../groupParts/GroupCard';
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -11,9 +11,10 @@ class Dashboard extends React.Component {
 
   renderGroups() {
     return this.props.groups.map(group => (
-      <GroupCard id={group._id} name={group.name} devices={group.devices} />
+      <GroupCard key={group._id} id={group._id} name={group.name} />
     ));
   }
+
   render() {
     return (
       <div>

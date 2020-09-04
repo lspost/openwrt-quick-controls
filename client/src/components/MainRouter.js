@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
-import Dashboard from './Dashboard';
-import GroupEdit from './GroupEdit';
+import Dashboard from './pages/Dashboard';
+import GroupEdit from './pages/GroupEdit';
 
 const MainRouter = () => {
   return (

@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
   console.log(req.body);
-  const { name, devices } = req.body;
+  const { name, devices, accessAllowed } = req.body;
   const processedName = name.trim();
   const processedDevices = devices.map(({ name, address }) => ({
     name: name.trim(),
