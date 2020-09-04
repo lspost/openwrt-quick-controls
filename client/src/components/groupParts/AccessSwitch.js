@@ -16,7 +16,7 @@ const AccessSwitch = ({ groupId, groups, editGroup }) => {
       <div className="switch">
         <label>
           Off
-          <input checked={accessAllowed} type="checkbox" />
+          <input checked={accessAllowed} onChange={() => {}} type="checkbox" />
           <span
             className="lever"
             onClick={() =>

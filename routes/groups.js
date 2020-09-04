@@ -11,17 +11,23 @@ module.exports = app => {
   });
 
   app.post('/api/groups', requireLogin, processGroupData, async (req, res) => {
-    const { name, devices } = req.processedGroup;
-    const group = new Group({
-      name,
-      devices
-    }).save();
+    const group = await new Group(req.groupData).save();
     res.send(group);
   });
 
-  app.put('/api/groups/:id', async (req, res) => {
-    //
-  });
+  app.put(
+    '/api/groups/:id',
+    requireLogin,
+    processGroupData,
+    async (req, res) => {
+      const group = await Group.findOneAndUpdate(
+        { _id: req.params.id },
+        req.groupData,
+        { new: true, useFindAndModify: false }
+      ).exec();
+      res.send(group);
+    }
+  );
 
   app.delete('/api/groups:id', async (req, res) => {});
 };

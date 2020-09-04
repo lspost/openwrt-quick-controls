@@ -6,9 +6,7 @@ export default (state = [], action) => {
       return action.payload;
     case EDIT_GROUP:
       return state.map(group =>
-        group._id === action.payload.id
-          ? { ...group, ...action.payload.updates }
-          : group
+        group._id === action.payload._id ? action.payload : group
       );
     default:
       return state;

@@ -7,11 +7,11 @@ export const getGroups = () => async dispatch => {
 };
 
 export const createGroup = group => async dispatch => {
-  console.log(group);
   const res = await axios.post('/api/groups', group);
   dispatch({ type: CREATE_GROUP, payload: res.data });
 };
 
-export const editGroup = (groupId, updates) => dispatch => {
-  dispatch({ type: EDIT_GROUP, payload: { id: groupId, updates } });
+export const editGroup = (groupId, updates) => async dispatch => {
+  const res = await axios.put(`/api/groups/${groupId}`, updates);
+  dispatch({ type: EDIT_GROUP, payload: res.data });
 };

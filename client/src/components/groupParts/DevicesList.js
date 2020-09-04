@@ -12,7 +12,7 @@ const DevicesList = ({ groupId, groups }) => {
     </div>
   ));
 
-  return <div className="device-list">{renderedDevices}</div>;
+  return <div className="devices-list grey lighten-5">{renderedDevices}</div>;
 };
 
 const mapStateToProps = ({ groups }) => ({ groups });

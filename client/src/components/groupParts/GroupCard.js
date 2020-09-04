@@ -3,7 +3,7 @@ import AccessSwitch from '../groupParts/AccessSwitch';
 import DevicesList from './DevicesList';
 
 export default ({ id, name }) => (
-  <div key={id} className="row" style={{ padding: '14px' }}>
+  <div key={id} className="row group-card">
     <div className="col s12">
       <div className="card">
         <div className="card-content">

@@ -43,28 +43,30 @@ class GroupEdit extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <h5>Group Name</h5>
-          <input
-            type="text"
-            onChange={e => {
-              this.updateGroupName(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <h5>Devices</h5>
-          {this.renderGroupInputs()}
-        </div>
-        <div>
-          <button className="btn cyan darken-2">Cancel</button>
-          <button
-            className="btn right"
-            onClick={() => this.props.createGroup(this.state)}
-          >
-            Save
-          </button>
+      <div className="card">
+        <div className="card-content">
+          <div>
+            <h5>Group Name</h5>
+            <input
+              type="text"
+              onChange={e => {
+                this.updateGroupName(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <h5>Devices</h5>
+            {this.renderGroupInputs()}
+          </div>
+          <div>
+            <button className="btn cyan darken-2">Cancel</button>
+            <button
+              className="btn right"
+              onClick={() => this.props.createGroup(this.state)}
+            >
+              Save
+            </button>
+          </div>
         </div>
       </div>
     );
