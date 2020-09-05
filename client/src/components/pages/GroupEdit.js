@@ -13,7 +13,16 @@ class GroupEdit extends React.Component {
       this.setState(() => ({
         id: this.props.match.params
       }));
+
+      const group = this.props.groups.find(group => group._id)
+      if(group){
+        this.props.
+      }else {
+        //redirect to dashboard
+      }
     }
+
+
   }
 
   render() {
