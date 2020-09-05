@@ -11,7 +11,8 @@ const MainRouter = () => {
         <Header />
         <div className="container">
           <Route exact path="/" component={Dashboard} />
-          <Route path="/group/edit" component={GroupEdit} />
+          <Route exact path="/group/edit" component={GroupEdit} />
+          <Route path="/group/edit/:id" component={GroupEdit} />
         </div>
       </div>
     </BrowserRouter>

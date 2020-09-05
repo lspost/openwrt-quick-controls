@@ -1,47 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { groupActions } from '../../actions';
-
-const emptyDevice = { name: '', address: '' };
+import GroupEditDevicesInput from '../groupParts/GroupEditDevicesInput';
+import { groupActions, groupEditFormActions } from '../../actions';
 
 class GroupEdit extends React.Component {
   state = {
-    name: '',
-    devices: [{ ...emptyDevice }]
+    id: null
   };
 
-  addDevice = () => {
-    this.setState(prevState => ({
-      devices: [...prevState.devices, { ...emptyDevice }]
-    }));
-  };
-
-  removeDevice = deviceIndex => {
-    this.setState(prevState => ({
-      devices: prevState.devices.filter(
-        (device, index) => deviceIndex !== index
-      )
-    }));
-  };
-
-  updateGroupName = value => {
-    this.setState(() => ({ name: value }));
-  };
-
-  renderGroupInputs = () =>
-    this.state.devices.map(({ name, address }, index) =>
-      this.renderInput(name, address, index)
-    );
-
-  updateDevice = (field, value, index) => {
-    this.setState(prevState => {
-      const newState = { ...prevState };
-      newState.devices[index][field] = value;
-      return newState;
-    });
-  };
+  componentDidMount() {
+    if (this.props.match.params) {
+      this.setState(() => ({
+        id: this.props.match.params
+      }));
+    }
+  }
 
   render() {
+    console.log('param', this.props.match.params);
     return (
       <div className="card">
         <div className="card-content">
@@ -49,20 +25,21 @@ class GroupEdit extends React.Component {
             <h5>Group Name</h5>
             <input
               type="text"
+              value={this.props.groupEditForm.name}
               onChange={e => {
-                this.updateGroupName(e.target.value);
+                this.props.groupEditFormUpdateName(e.target.value);
               }}
             />
           </div>
           <div>
             <h5>Devices</h5>
-            {this.renderGroupInputs()}
+            <GroupEditDevicesInput />
           </div>
           <div>
             <button className="btn cyan darken-2">Cancel</button>
             <button
               className="btn right"
-              onClick={() => this.props.createGroup(this.state)}
+              onClick={() => this.props.createGroup(this.props.groupEditForm)}
             >
               Save
             </button>
@@ -71,55 +48,14 @@ class GroupEdit extends React.Component {
       </div>
     );
   }
-
-  renderInput = (name, address, index) => {
-    return (
-      <div key={index} className="row group-edit-input-container">
-        <div className="col s12 m6">
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={e => {
-              this.updateDevice('name', e.target.value, index);
-            }}
-          />
-        </div>
-        <div className="col s12 m5">
-          <label>Address</label>
-          <input
-            type="text"
-            name="address"
-            value={address}
-            onChange={e => {
-              this.updateDevice('address', e.target.value, index);
-            }}
-          />
-        </div>
-        <div className="col s12 m1">
-          <div className="group-edit-input-buttons-container">
-            {this.state.devices.length !== 1 && (
-              <i
-                className="material-icons group-edit-input-button"
-                onClick={() => this.removeDevice(index)}
-              >
-                delete
-              </i>
-            )}
-            {index === this.state.devices.length - 1 && (
-              <i
-                className="material-icons group-edit-input-button"
-                onClick={this.addDevice}
-              >
-                add_box
-              </i>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
 }
 
-export default connect(null, groupActions)(GroupEdit);
+const mapStateToProps = ({ groups, groupEditForm }) => ({
+  groups,
+  groupEditForm
+});
+
+export default connect(mapStateToProps, {
+  ...groupActions,
+  ...groupEditFormActions
+})(GroupEdit);

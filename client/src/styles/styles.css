@@ -32,6 +32,7 @@
 
 .access-badge {
   border-radius: 4px;
+  border: solid 1px lightgrey;
   padding: 2px 10px;
   font-size: 18px;
   margin-bottom: 12px;

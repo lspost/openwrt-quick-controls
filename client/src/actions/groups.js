@@ -7,6 +7,7 @@ export const getGroups = () => async dispatch => {
 };
 
 export const createGroup = group => async dispatch => {
+  console.log(group);
   const res = await axios.post('/api/groups', group);
   dispatch({ type: CREATE_GROUP, payload: res.data });
 };
