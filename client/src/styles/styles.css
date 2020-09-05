@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.group-edit-delete-button {
+  margin-right: 8px;
+}
+
 .devices-list {
   border: 1px solid lightgrey;
   border-radius: 4px;

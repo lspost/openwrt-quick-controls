@@ -1,13 +1,18 @@
 import {
   RESET_GROUP_EDIT_FORM,
+  SET_GROUP_EDIT_FORM,
   GROUP_EDIT_FORM_ADD_DEVICE,
   GROUP_EDIT_FORM_REMOVE_DEVICE,
   GROUP_EDIT_FORM_UPDATE_DEVICE,
   GROUP_EDIT_FORM_UPDATE_NAME
 } from './types';
 
-export const resetGroupEditForm = data => dispatch => {
+export const resetGroupEditForm = () => dispatch => {
   dispatch({ type: RESET_GROUP_EDIT_FORM });
+};
+
+export const setGroupEditForm = groupInfo => dispatch => {
+  dispatch({ type: SET_GROUP_EDIT_FORM, payload: groupInfo });
 };
 
 export const groupEditFormAddDevice = () => dispatch => {

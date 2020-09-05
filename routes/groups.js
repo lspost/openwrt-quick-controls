@@ -29,5 +29,8 @@ module.exports = app => {
     }
   );
 
-  app.delete('/api/groups:id', async (req, res) => {});
+  app.delete('/api/groups/:id', requireLogin, async (req, res) => {
+    await Group.deleteOne({ _id: req.params.id });
+    res.send({ completed: true });
+  });
 };
