@@ -24,9 +24,13 @@ export const groupEditFormRemoveDevice = deviceIndex => dispatch => {
 };
 
 export const groupEditFormUpdateDevice = (field, value, index) => dispatch => {
-  dispatch({
-    type: GROUP_EDIT_FORM_UPDATE_DEVICE,
-    payload: { field, value, index }
+  return new Promise((resolve, reject) => {
+    dispatch({
+      type: GROUP_EDIT_FORM_UPDATE_DEVICE,
+      payload: { field, value, index }
+    });
+
+    resolve();
   });
 };
 

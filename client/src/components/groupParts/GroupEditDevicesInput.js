@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { groupEditFormActions } from '../../actions';
+import MacAddressInput from './MacAddressInput';
 
 class GroupEditDevicesInput extends React.Component {
   fieldNames = { name: 'Name', address: 'Address' };
@@ -29,7 +30,11 @@ class GroupEditDevicesInput extends React.Component {
     return (
       <div key={index} className="row group-edit-input-container">
         {this.renderInput('name', name, index)}
-        {this.renderInput('address', address, index)}
+        <MacAddressInput
+          index={index}
+          value={address}
+          handleOnChange={this.props.groupEditFormUpdateDevice}
+        />
         <div className="col s12 m1">
           <div className="group-edit-input-buttons-container">
             {this.props.groupEditForm.devices.length !== 1 && (
