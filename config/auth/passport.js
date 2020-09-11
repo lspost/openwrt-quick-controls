@@ -41,7 +41,7 @@ passport.deserializeUser(async (id, done) => {
   if (user) {
     done(null, user);
   } else {
-    done('could not locate user');
+    done(null, null);
   }
 });
 

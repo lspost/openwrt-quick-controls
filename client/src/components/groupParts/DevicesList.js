@@ -7,7 +7,8 @@ const DevicesList = ({ groupId, groups }) => {
   const renderedDevices = devices.map((device, index) => (
     <div key={index}>
       <span className="device-info">
-        {device.name} - {device.address}
+        <span>{device.name}</span>{' '}
+        <span className="group-card-device-address">( {device.address} )</span>
       </span>
     </div>
   ));

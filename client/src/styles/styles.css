@@ -54,10 +54,6 @@
   justify-content: center;
 }
 
-.group-edit-input-container {
-  display: flex;
-}
-
 .group-edit-input-buttons-container {
   display: flex;
   align-items: flex-end;
@@ -84,4 +80,19 @@
 
 .device-info {
   font-size: 20px;
+}
+
+.group-card-device-address {
+  color: grey;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 500px) {
+  .group-edit-input-container {
+    border: solid 1px lightgrey;
+  }
+
+  .access-switch {
+    margin-bottom: 8px;
+  }
 }
