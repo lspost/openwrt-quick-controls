@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const keys = require('../keys');
 
 const User = mongoose.model('users');
+const AuthorizedEmail = mongoose.model('authorized_emails');
 
 passport.use(
   new GoogleStrategy(
@@ -18,13 +19,22 @@ passport.use(
         let user = await User.findOne({ googleId: profile.id });
 
         if (!user) {
-          user = await new User({
-            googleId: profile.id,
-            email: profile._json.email,
-            name: profile.displayName
-          }).save();
+          const authorizedUser = await AuthorizedEmail.findOne({
+            email: profile._json.email
+          });
+
+          console.log(authorizedUser);
+
+          if (authorizedUser) {
+            user = await new User({
+              googleId: profile.id,
+              email: profile._json.email,
+              name: profile.displayName
+            }).save();
+          }
         }
-        done(null, user);
+
+        done(null, user || null);
       } catch (err) {
         done(err);
       }
