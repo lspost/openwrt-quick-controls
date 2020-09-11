@@ -4,7 +4,9 @@ import {
   GROUP_EDIT_FORM_ADD_DEVICE,
   GROUP_EDIT_FORM_REMOVE_DEVICE,
   GROUP_EDIT_FORM_UPDATE_DEVICE,
-  GROUP_EDIT_FORM_UPDATE_NAME
+  GROUP_EDIT_FORM_UPDATE_DEVICE_ERROR,
+  GROUP_EDIT_FORM_UPDATE_NAME,
+  GROUP_EDIT_FORM_UPDATE_ERROR
 } from './types';
 
 export const resetGroupEditForm = () => dispatch => {
@@ -33,7 +35,24 @@ export const groupEditFormUpdateDevice = (field, value, index) => dispatch => {
     resolve();
   });
 };
+export const groupEditFormUpdateDeviceError = (
+  field,
+  error,
+  index
+) => dispatch => {
+  dispatch({
+    type: GROUP_EDIT_FORM_UPDATE_DEVICE_ERROR,
+    payload: { field, error, index }
+  });
+};
 
 export const groupEditFormUpdateName = name => dispatch => {
-  dispatch({ type: GROUP_EDIT_FORM_UPDATE_NAME, payload: name });
+  return new Promise((resolve, reject) => {
+    dispatch({ type: GROUP_EDIT_FORM_UPDATE_NAME, payload: name });
+    resolve();
+  });
+};
+
+export const groupEditFormUpdateError = error => dispatch => {
+  dispatch({ type: GROUP_EDIT_FORM_UPDATE_ERROR, payload: error });
 };

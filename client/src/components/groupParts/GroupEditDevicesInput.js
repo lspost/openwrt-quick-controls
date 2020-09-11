@@ -7,33 +7,45 @@ class GroupEditDevicesInput extends React.Component {
   fieldNames = { name: 'Name', address: 'Address' };
 
   render = () => {
-    return this.props.groupEditForm.devices.map(({ name, address }, index) =>
-      this.renderInputsGroup(name, address, index)
+    return this.props.groupEditForm.devices.map(
+      ({ name, address, errors }, index) =>
+        this.renderInputsGroup(name, address, errors, index)
     );
   };
 
-  renderInput = (field, value, index) => (
+  renderInput = (field, value, error, index) => (
     <div className="col s12 m6">
       <label>{this.fieldNames[field]}</label>
       <input
         type="text"
         name={field}
         value={value}
-        onChange={e => {
-          this.props.groupEditFormUpdateDevice(field, e.target.value, index);
+        onChange={async e => {
+          await this.props.groupEditFormUpdateDevice(
+            field,
+            e.target.value,
+            index
+          );
+          if (error) {
+            this.props.nameValidation(index);
+          }
         }}
+        onBlur={() => this.props.nameValidation(index)}
       />
+      {error && <p className="form-error">{error}</p>}
     </div>
   );
 
-  renderInputsGroup = (name, address, index) => {
+  renderInputsGroup = (name, address, errors, index) => {
     return (
       <div key={index} className="row group-edit-input-container">
-        {this.renderInput('name', name, index)}
+        {this.renderInput('name', name, errors.name, index)}
         <MacAddressInput
           index={index}
           value={address}
+          error={errors.address}
           handleOnChange={this.props.groupEditFormUpdateDevice}
+          validation={this.props.addressValidation}
         />
         <div className="col s12 m1">
           <div className="group-edit-input-buttons-container">

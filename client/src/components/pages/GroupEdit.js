@@ -19,6 +19,73 @@ class GroupEdit extends React.Component {
     }
   };
 
+  validateAll = () => {
+    let valid = true;
+
+    if (!this.validateGroupName()) {
+      valid = false;
+    }
+
+    this.props.groupEditForm.devices.forEach((device, index) => {
+      if (!this.validateDeviceName(index)) {
+        valid = false;
+      }
+
+      if (!this.validateDeviceAddress(index)) {
+        valid = false;
+      }
+    });
+
+    return valid;
+  };
+
+  validateGroupName = () => {
+    const name = this.props.groupEditForm.name;
+    const re = /^[a-zA-Z0-9 ]+$/g;
+    if (name && re.test(name)) {
+      this.props.groupEditFormUpdateError('');
+      return true;
+    } else {
+      this.props.groupEditFormUpdateError(
+        'You must enter a group name. Cannot include special characters'
+      );
+      return false;
+    }
+  };
+
+  validateDeviceName = index => {
+    const name = this.props.groupEditForm.devices[index].name;
+    const re = /^[a-zA-Z0-9 ]+$/g;
+    if (name && re.test(name)) {
+      this.props.groupEditFormUpdateDeviceError('name', '', index);
+      return true;
+    } else {
+      this.props.groupEditFormUpdateDeviceError(
+        'name',
+        'You must enter a group name. Cannot include special characters',
+        index
+      );
+      return false;
+    }
+  };
+
+  validateDeviceAddress = index => {
+    const address = this.props.groupEditForm.devices[index].address;
+    const re = /^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}$/g;
+
+    if (address && re.test(address)) {
+      this.props.groupEditFormUpdateDeviceError('address', '', index);
+      return true;
+    } else {
+      this.props.groupEditFormUpdateDeviceError(
+        'address',
+        'You must enter a valid MAC address',
+        index
+      );
+      return false;
+    }
+  };
+
   componentDidMount() {
     const id = this.props.match.params.id;
     if (id) {
@@ -45,6 +112,11 @@ class GroupEdit extends React.Component {
   }
 
   saveGroup = () => {
+    console.log('hello');
+    if (!this.validateAll()) {
+      return;
+    }
+
     if (this.state.id) {
       this.props.editGroup(this.state.id, this.props.groupEditForm);
       //call update group
@@ -68,14 +140,26 @@ class GroupEdit extends React.Component {
             <input
               type="text"
               value={this.props.groupEditForm.name}
-              onChange={e => {
-                this.props.groupEditFormUpdateName(e.target.value);
+              onChange={async e => {
+                await this.props.groupEditFormUpdateName(e.target.value);
+                if (this.props.groupEditForm.errors.name) {
+                  this.validateGroupName();
+                }
               }}
+              onBlur={this.validateGroupName}
             />
+            {this.props.groupEditForm.errors.name && (
+              <p className="form-error">
+                {this.props.groupEditForm.errors.name}
+              </p>
+            )}
           </div>
           <div>
             <h5>Devices</h5>
-            <GroupEditDevicesInput />
+            <GroupEditDevicesInput
+              nameValidation={this.validateDeviceName}
+              addressValidation={this.validateDeviceAddress}
+            />
           </div>
           <div>
             <Link to="/" className="btn cyan darken-2">

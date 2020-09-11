@@ -38,7 +38,7 @@ class MacAddressInput extends React.Component {
     const re = /[^a-f0-9]*/g;
 
     //Ignore input if it would exceed full address length
-    if (inputValue.trim() > 17) {
+    if (inputValue.trim().length > 17) {
       return;
     }
 
@@ -52,6 +52,8 @@ class MacAddressInput extends React.Component {
           break;
         case 'delete':
           rightOfCursor = rightOfCursor.slice(2, rightOfCursor.length);
+          break;
+        default:
           break;
       }
     }
@@ -69,6 +71,10 @@ class MacAddressInput extends React.Component {
     await this.props.handleOnChange('address', newValue, this.props.index);
     input.selectionStart = left.length;
     input.selectionEnd = left.length;
+
+    if (this.props.error) {
+      this.props.validation(this.props.index);
+    }
 
     /*
     this.setState(
@@ -120,7 +126,9 @@ class MacAddressInput extends React.Component {
           onChange={e => this.handleChange(e)}
           onKeyDown={this.handleKeyDown}
           spellCheck={false}
+          onBlur={() => this.props.validation(this.props.index)}
         />
+        {this.props.error && <p className="form-error">{this.props.error}</p>}
       </div>
     );
   }
